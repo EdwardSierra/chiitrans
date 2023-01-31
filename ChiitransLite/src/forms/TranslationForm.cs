@@ -216,7 +216,11 @@ namespace ChiitransLite.forms {
                             return;
                         }
                     }
-                    webBrowser1.callScript("translate", id, raw, src, Utils.toJson(translators));
+                    string apiKey = System.Environment.GetEnvironmentVariable("GOOGLE_TRANSLATE_API_KEY");
+                    if (apiKey != null)
+                        webBrowser1.callScript("translate", id, raw, src, Utils.toJson(translators), apiKey);
+                    else
+                        MessageBox.Show("Please input a Google Translate API Key in the Options window.");
                 };
                 TranslationService.instance.onEdictDone += (id, parse) =>
                 {

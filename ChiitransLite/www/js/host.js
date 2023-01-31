@@ -63,7 +63,7 @@
     var cb, qq;
     qq = "" + queryId;
     if (callbacks[qq] != null) {
-      cb = callbacks[qq];
+        cb = callbacks[qq];
       delete callbacks[qq];
       cb(JSON.parse(responseJSON));
     }

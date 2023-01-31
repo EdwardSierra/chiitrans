@@ -273,7 +273,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="www\js\options.coffee" />
     <None Include="www\js\hint.coffee" />
     <None Include="www\js\host.coffee" />
     <None Include="www\js\index.coffee" />
@@ -295,9 +294,7 @@
     <Content Include="src\todo.txt" />
     <Content Include="www\js\jquery-ui.js" />
     <Content Include="www\js\jquery.js" />
-    <Content Include="www\js\options.js">
-      <DependentUpon>options.coffee</DependentUpon>
-    </Content>
+    <Content Include="www\js\options.js" />
     <Content Include="www\js\translation.js">
       <DependentUpon>translation.coffee</DependentUpon>
     </Content>

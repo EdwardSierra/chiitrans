@@ -96,6 +96,7 @@ namespace ChiitransLite.forms {
 
         private object getOptions() {
             bool isDefaultSession = Settings.session.processExe == null;
+            var googleApiKey = System.Environment.GetEnvironmentVariable("GOOGLE_TRANSLATE_API_KEY");
             return new {
                 clipboard = Settings.app.clipboardTranslation,
                 sentenceDelay = Settings.session.sentenceDelay.TotalMilliseconds,
@@ -109,6 +110,7 @@ namespace ChiitransLite.forms {
                 separateSpeaker = Settings.app.separateSpeaker,
                 nameDict = Settings.app.nameDict.ToString(),
                 atlasEnv = Settings.app.atlasEnv,
+                googleApiKey = googleApiKey,
                 atlasEnvList = getAtlasEnvList(),
                 stayOnTop = Settings.app.stayOnTop,
                 clipboardJapanese = Settings.app.clipboardJapanese
@@ -125,8 +127,13 @@ namespace ChiitransLite.forms {
             bool separateSpeaker = (bool)op["separateSpeaker"];
             string nameDictStr = (string)op["nameDict"];
             string atlasEnv = (string)op["atlasEnv"];
+            string googleApiKey = (string)op["googleApiKey"];
             bool stayOnTop = (bool)op["stayOnTop"];
             bool clipboardJapanese = (bool)op["clipboardJapanese"];
+
+            string key = "GOOGLE_TRANSLATE_API_KEY";
+
+            Environment.SetEnvironmentVariable(key, googleApiKey, EnvironmentVariableTarget.User);
 
             TranslationForm.instance.setClipboardTranslation(clipboard);
             if (sentenceDelay >= 10) {
