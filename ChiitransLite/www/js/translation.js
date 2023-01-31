@@ -553,41 +553,45 @@
      * @returns {undefined} This function does not return a value
      */
     translate = window.translate = function (id, raw, src, translatorsListJson, apiKey) {
-        // Declare variables for the list of translators and an object containing the translation context
-        var container, ex, t, translatorsList, _fn, _i, _j, _len, _len1;
-        translatorsList = JSON.parse(translatorsListJson);
-        ex = {
-            id: id,
-            rawText: raw,
-            apiKey: apiKey
-        };
+        updateTranslationResult(id, renderSimpleTranslationResult(src));
 
-        // If there is only one translator in the list, use that translator for the translation
-        if (translatorsList.length <= 1) {
-            for (_i = 0, _len = translatorsList.length; _i < _len; _i++) {
-                t = translatorsList[_i];
-                translators[t](src, function (res) {
-                    return updateTranslationResult(id, renderSimpleTranslationResult(res));
-                }, ex);
-            }
 
-        // If there is more than one translator in the list, use all of them and display the 
-        // results in a multi - translation view
-        } else {
-            container = renderMultiTranslationResult(translatorsList);
-            updateTranslationResult(id, container);
-            _fn = (function (_this) {
-                return function (t) {
-                    return translators[t](src, function (res) {
-                        return updateMultiTranslationResult(container, t, res);
-                    }, ex);
-                };
-            })(this);
-            for (_j = 0, _len1 = translatorsList.length; _j < _len1; _j++) {
-                t = translatorsList[_j];
-                _fn(t);
-            }
-        }
+
+        //// Declare variables for the list of translators and an object containing the translation context
+        //var container, ex, t, translatorsList, _fn, _i, _j, _len, _len1;
+        //translatorsList = JSON.parse(translatorsListJson);
+        //ex = {
+        //    id: id,
+        //    rawText: raw,
+        //    apiKey: apiKey
+        //};
+
+        //// If there is only one translator in the list, use that translator for the translation
+        //if (translatorsList.length <= 1) {
+        //    for (_i = 0, _len = translatorsList.length; _i < _len; _i++) {
+        //        t = translatorsList[_i];
+        //        translators[t](src, function (res) {
+        //            return updateTranslationResult(id, renderSimpleTranslationResult(res));
+        //        }, ex);
+        //    }
+
+        //// If there is more than one translator in the list, use all of them and display the 
+        //// results in a multi - translation view
+        //} else {
+        //    container = renderMultiTranslationResult(translatorsList);
+        //    updateTranslationResult(id, container);
+        //    _fn = (function (_this) {
+        //        return function (t) {
+        //            return translators[t](src, function (res) {
+        //                return updateMultiTranslationResult(container, t, res);
+        //            }, ex);
+        //        };
+        //    })(this);
+        //    for (_j = 0, _len1 = translatorsList.length; _j < _len1; _j++) {
+        //        t = translatorsList[_j];
+        //        _fn(t);
+        //    }
+        //}
     };
 
     http = window.http = {

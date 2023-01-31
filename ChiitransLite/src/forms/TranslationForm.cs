@@ -216,11 +216,9 @@ namespace ChiitransLite.forms {
                             return;
                         }
                     }
-                    string apiKey = System.Environment.GetEnvironmentVariable("GOOGLE_TRANSLATE_API_KEY");
-                    if (apiKey != null)
-                        webBrowser1.callScript("translate", id, raw, src, Utils.toJson(translators), apiKey);
-                    else
-                        MessageBox.Show("Please input a Google Translate API Key in the Options window.");
+
+                    var translation = new GoogleTranslator().Translate(src);
+                    webBrowser1.callScript("translate", id, raw, translation, Utils.toJson(translators));
                 };
                 TranslationService.instance.onEdictDone += (id, parse) =>
                 {
@@ -298,7 +296,7 @@ namespace ChiitransLite.forms {
         }
 
         internal void sendSysCommand(uint command) {
-            Winapi.ReleaseCapture(webBrowser1.Handle);
+            Winapi.ReleaseCapture(/*webBrowser1.Handle*/);
             Winapi.DefWindowProc(this.Handle, Winapi.WM_SYSCOMMAND, (UIntPtr)command, IntPtr.Zero);
         }
 

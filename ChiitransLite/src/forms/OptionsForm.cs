@@ -96,7 +96,7 @@ namespace ChiitransLite.forms {
 
         private object getOptions() {
             bool isDefaultSession = Settings.session.processExe == null;
-            var googleApiKey = System.Environment.GetEnvironmentVariable("GOOGLE_TRANSLATE_API_KEY");
+            var googleApiKey = System.Environment.GetEnvironmentVariable("GOOGLE_TRANSLATE_API_KEY", EnvironmentVariableTarget.User);
             return new {
                 clipboard = Settings.app.clipboardTranslation,
                 sentenceDelay = Settings.session.sentenceDelay.TotalMilliseconds,

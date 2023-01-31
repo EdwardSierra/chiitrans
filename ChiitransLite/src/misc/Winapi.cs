@@ -28,8 +28,9 @@ namespace ChiitransLite.misc {
 
         [DllImport("user32.dll")]
         public static extern IntPtr DefWindowProc(IntPtr hWnd, uint uMsg, UIntPtr wParam, IntPtr lParam);
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture(IntPtr hwnd);
+
+        [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall)]
+        public static extern bool ReleaseCapture(/*IntPtr hwnd*/);
 
         public const uint WM_SYSCOMMAND = 0x112;
         public const uint MOUSE_MOVE = 0xF012;
